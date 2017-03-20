@@ -1,0 +1,19 @@
+<h1>Modifier le club</h1>
+
+<%= form_for @equipe, html: { multipart: true } do |f| %>
+	<div class="form-group">
+		<label>Entraîneur </label>
+  		<%= f.text_field :entraineur, class: 'form-control' %>
+
+  		<label>Stats Générales </label>
+  		<%= f.text_field :statsgenerale, class: 'form-control' %>
+
+  		<label>Image</label>
+	      <%= f.label :image %><br>
+	      <%= f.file_field :image %>
+  	</div>
+
+  	<div class="form-group">
+  		<button type="submit" class="btn btn-warning">Modifier le club</button>
+  	</div>
+<% end %>

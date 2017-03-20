@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nameteam: MyString
+  nametrainer: MyString
+  effectif: 1
+  pays: MyString
+  statsgenerale: 1
+  argent: 1
+
+two:
+  nameteam: MyString
+  nametrainer: MyString
+  effectif: 1
+  pays: MyString
+  statsgenerale: 1
+  argent: 1

@@ -1,0 +1,33 @@
+<h1 class="text-center">Fiche de l'équipe <%= @equipe.name %></h1>
+
+<%= image_tag @equipe.image.url, :class => "img_equipes_show"  %>
+
+<p class="text-center">Pays : <%= @equipe.pays %> <br>
+	Entraîneur : <%= @equipe.entraineur %> <br>
+	Statistiques générales : <%= @equipe.statsgenerale %> <br>
+	Effectif : <%= @equipe.joueurs.length %> <br>
+</p>
+
+<hr>
+
+<h2 class="text-center">Liste des joueurs</h2>
+
+
+<div class="row">
+	<% @equipe.joueurs.each do |joueur| %>
+		<div class="col-lg-3">
+			<a href="<%= joueur_path(joueur.id) %>" class="img_joueurs"><%= image_tag joueur.image.url %></a>
+				<% if user_signed_in? %>
+					<!-- <a href="<%= edit_joueur_path(joueur.id) %>" class="btn btn-warning">Editer</a>
+					<a href="<%= joueur_path(joueur.id) %>" class="btn btn-danger" data-confirm="Êtes-vous sûr de rompre le contrat de ce joueur ?" data-method="DELETE">Rompre contrat</a>-->
+				<% end %>
+			</div>
+		<% end %>
+
+</div>
+
+<br>
+
+<p>
+	<a href="<%= equipes_path %>" class="btn btn-default">Retour à la liste des équipes</a>
+</p>

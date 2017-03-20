@@ -1,0 +1,59 @@
+<div class="container">
+  <h1>Signer un joueur</h1>
+  <p>
+    Tu es sur le point de recruter un nouveau talent. Remplis ce formulaire et il signera pour ton équipe !
+  </p>
+
+  <%= form_for @joueur, html: { multipart: true } do |f| %>
+  <div class="form-group">
+    <label>Nom </label>
+    <%= f.text_field :name, class: 'form-control'%>
+
+    <label>Club </label>
+        <%= f.text_field :club, class: 'form-control' %>
+
+    <label>Nationalité </label>
+        <%= f.text_field :nationalite, class: 'form-control' %>
+
+    <label>Poste </label>
+        <%= f.text_field :poste, class: 'form-control' %>
+
+    <label>Prix </label>
+        <%= f.text_field :prix, class: 'form-control' %>
+
+    <label>Stats générales </label>
+      <%= f.text_field :statsgenerale, class: 'form-control' %>
+
+  	<label>PAC </label>
+  		<%= f.text_field :pac, class: 'form-control' %>
+
+  		<label>DRI </label>
+  		<%= f.text_field :dri, class: 'form-control' %>
+
+  		<label>TIR </label>
+  		<%= f.text_field :tir, class: 'form-control' %>
+
+  		<label>DEF </label>
+  		<%= f.text_field :def, class: 'form-control' %>
+
+  		<label>PAS </label>
+  		<%= f.text_field :pas, class: 'form-control' %>
+
+  		<label>PHY </label>
+  		<%= f.text_field :phy, class: 'form-control' %>
+
+  		<label>QUALITE </label>
+  		<%= f.text_field :qualite, class: 'form-control' %>
+
+      <label>Image</label>
+      <%= f.label :image %><br>
+      <%= f.file_field :image %>
+      </div>
+      
+
+  	<div class="form-group">
+  		<button type="submit" class="btn btn-success">Créer le joueur</button>
+  	</div>
+    <% end %>
+  
+</div>

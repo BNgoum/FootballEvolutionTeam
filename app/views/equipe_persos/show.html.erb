@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <h1 class="text-center"><%= @equipe_perso.nameteam %></h1>
+</p>
+
+<%= image_tag @equipe_perso.image.url, :class => "img_equipes_show" %>
+
+<p class="text-center">
+  <strong>Entraîneur : </strong>
+  <%= @equipe_perso.nametrainer %>
+  <br>
+
+  <strong>Effectif : </strong>
+  <%= @joueurs.where(estAchete: true).length %>
+  <br>
+
+  <strong>Pays : </strong>
+  <%= @equipe_perso.pays %>
+  <br>
+
+  <strong>Statistiques générales : </strong>
+  <%= @equipe_perso.statsgenerale %>
+  <br>
+
+  <strong>Argent : </strong>
+  <%= @equipe_perso.argent %> €
+  <br>
+
+  <strong>Date de fondation : </strong>
+  <%= @equipe_perso.created_at %>
+</p>
+
+<p class="text-center">
+<%= link_to 'Acheter des joueurs', joueurs_path, :class => "btn btn-primary" %>
+
+<%= link_to 'Modifier', edit_equipe_perso_path(@equipe_perso), :class => "btn btn-warning" %>
+<%= link_to 'Retour', equipe_persos_path, :class => "btn btn-default" %>
+<p>
+
+<hr>
+
+<h1 class="text-center">Mes joueurs</h1>
+
+<div class="row">
+  <% @joueurs.each do |joueur| %>
+    <% if joueur.estAchete? %>
+      <div class="col-lg-3 ">
+        <div class="thumbnail" style="margin-bottom: 30px;">
+          <a href="<%= joueur_path(joueur.id) %>" class="img_joueurs"><%= image_tag joueur.image.url %></a>
+          <p class="text-center"><%= link_to 'VENDRE', vendre_joueur_path(type: joueur), :class => "btn btn-danger btn-lg" %></p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>
+

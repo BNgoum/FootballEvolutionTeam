@@ -1,0 +1,22 @@
+<% content_for(:title, @joueur.name) %>
+
+<h1 class="text-center">Fiche du joueur <%= @joueur.name %></h1>
+
+<%= image_tag @joueur.image.url(), :class => "img_joueurs" %>
+
+<p class="text-center">Club : <%= @joueur.club %> <br>
+	Nationalité : <%= @joueur.nationalite %> <br>
+	Statistiques générales : <%= @joueur.statsgenerale %> <br>
+	Poste : <%= @joueur.poste %> <br>
+	PAC : <%= @joueur.pac %> <br>
+	DRI : <%= @joueur.dri %> <br>
+	TIR : <%= @joueur.tir %> <br>
+	DEF : <%= @joueur.def %> <br>
+	PAS : <%= @joueur.pas %> <br>
+	PHY : <%= @joueur.phy %> <br>
+	QUALITE : <%= @joueur.qualite %> <br>
+</p>
+
+<p>
+	<a href="<%= joueurs_path %>" class="btn btn-default">Retour à la liste des joueurs</a>
+</p>

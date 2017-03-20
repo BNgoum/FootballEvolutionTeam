@@ -1,0 +1,50 @@
+<h1>Editer le joueur</h1>
+
+<% if @joueur.invalid? %>
+  <div class="alert alert-danger">
+    <ul>
+    <% @joueur.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @joueur, html: { multipart: true } do |f| %>
+	<div class="form-group">
+		<label>PAC </label>
+  		<%= f.text_field :pac, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+      <label>Prix </label>
+        <%= f.text_field :prix, class: 'form-control' %>
+  		<label>DRI </label>
+  		<%= f.text_field :dri, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+  		<label>TIR </label>
+  		<%= f.text_field :tir, class: 'form-control' %>
+
+  		<label>DEF </label>
+  		<%= f.text_field :def, class: 'form-control' %>
+
+  		<label>PAS </label>
+  		<%= f.text_field :pas, class: 'form-control' %>
+
+  		<label>PHY </label>
+  		<%= f.text_field :phy, class: 'form-control' %>
+
+  		<label>QUALITE </label>
+  		<%= f.text_field :qualite, class: 'form-control' %>
+
+      <label>Image</label>
+      <%= f.label :image %><br>
+      <%= f.file_field :image %>
+  	</div>
+
+  	<div class="form-group">
+  		<button type="submit" class="btn btn-warning">Modifier le joueur</button>
+  	</div>
+<% end %>
