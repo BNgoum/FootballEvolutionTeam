@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 	
-  resources :equipe_persos
+  resources :equipe_persos do
+    member do
+      get 'entrainer'
+    end
+  end
+
   devise_for :users
   devise_for :models
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -14,8 +19,16 @@ Rails.application.routes.draw do
     member do
       get 'acheter'
     end
+    member do
+      get 'defier'
+    end
   end
-  resources :equipes
+
+  resources :equipes do
+    member do
+      get 'defier'
+    end
+  end
   resources :photos
 
 

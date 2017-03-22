@@ -4,4 +4,7 @@ class ApplicationController < ActionController::Base
   def index
   	@equipe_persos = EquipePerso.first
   end
+
+  private
+
 end

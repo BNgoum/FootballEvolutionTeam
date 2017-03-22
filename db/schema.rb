@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170318135800) do
+ActiveRecord::Schema.define(version: 20170321180909) do
 
   create_table "equipe_persos", force: :cascade do |t|
     t.string   "nameteam"
@@ -18,9 +18,9 @@ ActiveRecord::Schema.define(version: 20170318135800) do
     t.integer  "effectif"
     t.string   "pays"
     t.integer  "statsgenerale"
-    t.integer  "argent"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.integer  "argent",             default: 1200
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"

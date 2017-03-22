@@ -10,12 +10,12 @@
 
 <hr>
 
-<h2 class="text-center">Liste des joueurs</h2>
+<h2 class="text-center" style="margin-bottom: 30px;">Liste des joueurs</h2>
 
-
+<div class="mes-joueurs">
 <div class="row">
 	<% @equipe.joueurs.each do |joueur| %>
-		<div class="col-lg-3">
+		<div class="col-lg-3" style="margin-top: 40px;">
 			<a href="<%= joueur_path(joueur.id) %>" class="img_joueurs"><%= image_tag joueur.image.url %></a>
 				<% if user_signed_in? %>
 					<!-- <a href="<%= edit_joueur_path(joueur.id) %>" class="btn btn-warning">Editer</a>
@@ -24,6 +24,7 @@
 			</div>
 		<% end %>
 
+</div>
 </div>
 
 <br>

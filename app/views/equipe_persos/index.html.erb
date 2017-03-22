@@ -1,36 +1,21 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Bienvenue sur l'espace de gestion de ton équipe</h1>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Nom de l'équipe</th>
-      <th>Nom de l'entraîneur</th>
-      <th>Effectif</th>
-      <th>Pays</th>
-      <th>Stats Générales</th>
-      <th>Porte-monnaie</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<h1 style="text-align:center; margin-bottom: 40px;">Bienvenue sur l'espace de gestion de ton équipe</h1>
+  <% if @equipe_persos.present? %>
     <% @equipe_persos.each do |equipe_perso| %>
-      <tr>
-        <td><%= equipe_perso.nameteam %></td>
-        <td><%= equipe_perso.nametrainer %></td>
-        <td><%= @joueurs.where(estAchete: true).length %></td>
-        <td><%= equipe_perso.pays %></td>
-        <td><%= equipe_perso.statsgenerale %></td>
-        <td><%= equipe_perso.argent %></td>
-        <td><%= link_to 'Voir', equipe_perso %></td>
-        <td><%= link_to 'Modifier', edit_equipe_perso_path(equipe_perso) %></td>
-        <td><%= link_to 'Annuler le contrat', equipe_perso, method: :delete, data: { confirm: 'Êtes-vous sûr ?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <h1 class="text-center"><%= equipe_perso.nameteam %></h1>
 
-<br>
-<%= link_to 'Créer une équipe', new_equipe_perso_path, :class => "btn btn-success" %>
+      <a href='<% equipe_perso %>'><%= image_tag equipe_perso.image.url, :class => "img_equipes_show" %></a>
+      <p class="text-center" style="margin-top: 40px;">
+        <%= link_to 'Voir en détails', equipe_perso, :class => "btn btn-lg btn-primary" %>
+        <%= link_to 'Acheter des joueurs', joueurs_path, :class => "btn btn-lg btn-primary" %>
+        <% if !equipe_perso.effectif.nil? && equipe_perso.effectif > 0 %>
+          <%= link_to 'Entraînement', entrainer_equipe_perso_path(equipe_perso.id), :class => "btn btn-lg btn-success" %>
+        <% end %>
+        <%= link_to 'Modifier', edit_equipe_perso_path(equipe_perso), :class => "btn btn-lg btn-warning" %>
+        <%= link_to 'Annuler le contrat', equipe_perso, method: :delete, data: { confirm: 'Êtes-vous sûr d\'annuler le contrat de votre équipe ?' }, :class => "btn btn-lg btn-danger" %>
+      </p>
+    <% end %>
+            
+    <br>
+  <% else %>
+    <%= link_to 'Créer ton équipe', new_equipe_perso_path, :class => "btn btn-success" %>
+<% end %>

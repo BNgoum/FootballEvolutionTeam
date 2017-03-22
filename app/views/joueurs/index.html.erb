@@ -1,14 +1,27 @@
-<h1 style="margin-bottom: 30px;">Liste des joueurs</h1> 
+<div class="row">
+	<div class="col-lg-6">
+		<h1 style="margin-bottom: 0px; float:left;">Liste des joueurs</h1> 
+		<% if user_signed_in? %>
+			<a href="<%= new_joueur_path %>" class="btn btn-success" style="margin: 23px 0 40px 15px;">Recruter un joueur</a>
+		<% end %>
+	</div>
 
-<p> <a href="<%= new_joueur_path %>" class="btn btn-success" style="margin: 23px 0 0 15px;">Recruter un joueur</a></p>
-
-
+<div class="col-lg-offset-2 col-lg-4" style="margin-top : 20px;">
+	<%= search_form_for @search do |f| %>
+		<div style="float:right;"><%= f.submit "Rechercher", :class => 'btn btn-default' %></div>
+		<div style="float:right;">
+			<%= f.text_field :name_cont, :class => "form-control", :placeholder => "Rechercher un joueur..." %>
+		</div>
+		
+	<% end %>
+	</div>
+</div>
 
 <div class="row">
 	<% @joueurs.each do |joueur| %>
 		<div class="col-lg-3">
 			<div class="thumbnail" style="margin-bottom: 30px;">
-				<a href="<%= joueur_path(joueur.id) %>"><%= image_tag joueur.image.url, :class => "img_joueurs" %></a>
+				<a href="<%= joueur_path(joueur.id) %>"><%= image_tag joueur.image.url %></a>
 				<p class="text-center">
 					<span class="badge text-center">
 						<% if joueur.prix %>
@@ -18,10 +31,18 @@
 						<% end %>
 					</span>
 				</p>
-				<p class="text-center"><%= link_to 'ACHETER', acheter_joueur_path(joueur.id), :class => "btn btn-success btn-lg" %></p>
-				<% if user_signed_in? %>
-					<a href="<%= edit_joueur_path(joueur.id) %>" class="btn btn-warning">Editer</a>
-					<a href="<%= joueur_path(joueur.id) %>" class="btn btn-danger" data-confirm="Êtes-vous sûr de rompre le contrat de ce joueur ?" data-method="DELETE">Rompre contrat</a>
+				
+				<% if user_signed_in? && @equipe_persos.first %>
+					<% if @equipe_persos.first.argent >= joueur.prix %>
+						<p class="text-center"><%= link_to 'ACHETER', acheter_joueur_path(joueur.id), :class => "btn btn-success btn-lg" %>
+						</p>
+					<% else %>
+						<p class="text-center"><%= link_to 'ACHETER', acheter_joueur_path(joueur.id), :class => "btn btn-danger disabled btn-lg" %>
+						</p>
+					<% end %>
+					
+					<!-- <a href="<%= edit_joueur_path(joueur.id) %>" class="btn btn-warning">Editer</a>
+					<a href="<%= joueur_path(joueur.id) %>" class="btn btn-danger" data-confirm="Êtes-vous sûr de rompre le contrat de ce joueur ?" data-method="DELETE">Rompre contrat</a> -->
 				<% end %>
 			</div>
 		</div>

@@ -1,10 +1,10 @@
 class EquipesController < ApplicationController
 
 	before_action :set_equipe, only: [:update, :show, :edit, :destroy]
-  after_action :set_argent, only: [:show, :edit, :update, :destroy]
 
   def index
-  	@equipes = Equipe.all
+    @search = Equipe.search(params[:q])
+  	@equipes = @search.result.paginate(:page => params[:page], :per_page => 8)
     @equipe_persos = EquipePerso.all
   end
 
@@ -34,6 +34,14 @@ class EquipesController < ApplicationController
   	@equipe.destroy
   	redirect_to equipes_path
   end
+
+  # def defier
+  #   @equipe = Equipe.find(params[:id])
+  #   @mon_equipe = EquipePerso.first
+  #   if @mon_equipe.statsgenerale > @equipe.statsgenerale
+  #   end
+  # end
+
 
   private
   def create_equipe_params

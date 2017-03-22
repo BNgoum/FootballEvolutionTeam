@@ -1,11 +1,12 @@
 class JoueursController < ApplicationController
 
 	before_action :set_joueur, only: [:update, :edit, :show, :destroy]
-  after_action :set_argent, only: [:show, :edit, :update, :destroy]
   # before_action :authenticate_user!
 
   def index
-  	@joueurs = Joueur.all.paginate(:page => params[:page], :per_page => 8)
+    @search = Joueur.search(params[:q])
+    @joueurs = @search.result.paginate(:page => params[:page], :per_page => 8)
+  	# @joueurs = Joueur.all.paginate(:page => params[:page], :per_page => 8)
     @equipes = Equipe.all
     @equipe_persos = EquipePerso.all
   end
@@ -48,19 +49,51 @@ class JoueursController < ApplicationController
 
   def acheter
     @joueur = Joueur.find(params[:id])
-    @joueur.estAchete = true
-    @joueur.save
-    redirect_to joueurs_path
+    if @joueur.present?
+      @a = EquipePerso.first
+      if @a.argent >= @joueur.prix
+        @a.argent -= @joueur.prix
+        @a.effectif += 1
+        @a.save
+        @joueur.estAchete = true
+        @joueur.save
+        flash[:success] = "#{@joueur.name} a bien été acheté !"
+        redirect_to joueurs_path
+      else
+        flash[:danger] = "Vous n'avez pas assez d'argent !"
+        redirect_to joueurs_path
+      end
+      
+    end
   end
 
   def vendre
     @joueur = Joueur.find(params[:type])
+    @a = EquipePerso.first
+    @a.argent += @joueur.prix/2
+    @a.effectif -= 1
+    @a.save
     @joueur.estAchete = false
     @joueur.save
+    flash[:success] = "#{@joueur.name} a bien été vendu !"
     redirect_to equipe_perso_path
   end
 
-
+  def defier
+    @equipe = Equipe.find(params[:id])
+    @mon_equipe = EquipePerso.first
+    if @mon_equipe.statsgenerale > @equipe.statsgenerale
+      @mon_equipe.argent += 2000
+      flash[:success] = "Bravo ! Tu as gagné contre #{@equipe.name} ! Tu remportes une récompense de 2000€ !"
+    elsif @mon_equipe.statsgenerale == @equipe.statsgenerale
+      flash[:warning] = "Match nul ! Aucune des deux équipes n'a su prendre l'avantage. Entraîne-toi et reviens défier #{@equipe.name}"
+    else
+      @mon_equipe.argent -= 1000
+      flash[:danger] = "Dommage... #{@equipe.name} est beaucoup trop fort pour toi ! Entraîne-toi et revient défier #{@equipe.name}. Tu viens de perdre 1000€."
+    end
+    @mon_equipe.save
+    redirect_to equipes_path
+  end
 
 
   private

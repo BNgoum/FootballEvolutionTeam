@@ -23,19 +23,27 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="<%= root_path %>"><i class="fa fa-futbol-o fa-1x" aria-hidden="true"></i> FET</a>
+	      <a class="navbar-brand" href="<%= root_path %>" style="font-size: 2.5rem; <%= 'color: orange;' if params[:controller] == 'home' %>"><i class="fa fa-futbol-o fa-1x" aria-hidden="true"></i> FET</a>
 	    </div>
 
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <li><a href="<%= equipes_path %>">Equipes</a></li>
-	        <li><a href="<%= joueurs_path %>">Joueurs</a></li>
+	        <li class="<%= 'active' if params[:controller] == 'equipes' %>"><a href="<%= equipes_path %>">Equipes</a></li>
+	        <li class="<%= 'active' if params[:controller] == 'joueurs' %>"><a href="<%= joueurs_path %>">Joueurs</a></li>
 	        <% if user_signed_in? %>
-	        <li><a href="<%= equipe_persos_path %>">Mon équipe</a></li>
+	        <li class="<%= 'active' if params[:controller] == 'equipe_persos' %>"><a href="<%= equipe_persos_path %>">Mon équipe</a></li>
 	        <% end %>
-	        <li>
-	        	<div class="dropdown">
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	      	<% if user_signed_in? && @equipe_persos.present? %>
+		        <li style="margin: 5px 40px 0 0;">
+		        	<i class="fa fa-money fa-3x" style="color: green;" aria-hidden="true"></i> <strong style="color:white; font-size: 3rem;"> : <%= @equipe_persos.first.argent %> €</strong>
+		        </li>
+	        <% end %>
+
+	      	<li>
+	        	<div class="dropdown" style="margin-top: 3px;">
 				  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 				    <i class="fa fa-user fa-2x" aria-hidden="true"></i>
 				    <span class="caret"></span>
@@ -62,11 +70,6 @@
 				  </ul>
 				</div>
 	        </li>
-	        <% if user_signed_in? %>
-		        <li style="margin: 15px 0 0 10px;">
-		        	Porte-monnaie : <%= @equipe_persos.first.argent %> €
-		        </li>
-	        <% end %>
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->

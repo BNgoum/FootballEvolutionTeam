@@ -11,18 +11,15 @@
   		<label>pays </label>
   		<%= f.text_field :pays, class: 'form-control' %>
 
-  		<label>Stats </label>
-  		<%= f.text_field :statsgenerale, class: 'form-control' %>
-
-  		<label>Image</label>
-	      <%= f.label :image %><br>
+  		<label>Logo</label>
 	      <%= f.file_field :image %>
   	</div>
 
   	<div class="form-group">
-  		<button type="submit" class="btn btn-warning">Modifier l'équipe</button>
+  		<button type="submit" class="btn btn-warning">Modifier l'équipe</button> | 
+      <%= link_to 'Retour', equipe_persos_path, :class => "btn btn-default" %>
   	</div>
 <% end %>
 
 
-<%= link_to 'Retour', equipe_persos_path, :class => "btn btn-default" %>
+

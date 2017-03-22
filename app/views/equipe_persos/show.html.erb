@@ -32,27 +32,31 @@
 </p>
 
 <p class="text-center">
-<%= link_to 'Acheter des joueurs', joueurs_path, :class => "btn btn-primary" %>
-
-<%= link_to 'Modifier', edit_equipe_perso_path(@equipe_perso), :class => "btn btn-warning" %>
-<%= link_to 'Retour', equipe_persos_path, :class => "btn btn-default" %>
+<%= link_to 'Acheter des joueurs', joueurs_path, :class => "btn btn-lg btn-primary" %>
+<% if !@equipe_perso.effectif.nil? && @equipe_perso.effectif > 0 %>
+  <%= link_to 'Entraînement', entrainer_equipe_perso_path(@equipe_perso.id), :class => "btn btn-lg btn-success" %>
+<% end %>
+<%= link_to 'Modifier', edit_equipe_perso_path(@equipe_perso), :class => "btn btn-lg btn-warning" %>
+<%= link_to 'Retour', equipe_persos_path, :class => "btn btn-lg btn-default" %>
 <p>
 
 <hr>
 
-<h1 class="text-center">Mes joueurs</h1>
+<h1 class="text-center" style="margin-bottom: 40px;">Mes joueurs</h1>
 
-<div class="row">
-  <% @joueurs.each do |joueur| %>
-    <% if joueur.estAchete? %>
-      <div class="col-lg-3 ">
-        <div class="thumbnail" style="margin-bottom: 30px;">
-          <a href="<%= joueur_path(joueur.id) %>" class="img_joueurs"><%= image_tag joueur.image.url %></a>
-          <p class="text-center"><%= link_to 'VENDRE', vendre_joueur_path(type: joueur), :class => "btn btn-danger btn-lg" %></p>
+<div class="mes-joueurs">
+
+  <div class="row">
+    <% @joueurs.each do |joueur| %>
+      <% if joueur.estAchete? %>
+        <div class="col-lg-3 ">
+          <div class="" style="margin: 50px 0 0 0;">
+            <a href="<%= joueur_path(joueur.id) %>" class="img_joueurs"><%= image_tag joueur.image.url %></a>
+            <p class="text-center"><%= link_to 'VENDRE', vendre_joueur_path(type: joueur), :class => "btn btn-danger btn-lg", data: { confirm: 'Êtes-vous sûr de vouloir vendre ce joueur ? Vous obtiendrez la moitié de sa valeur d\'achat initiale.' } %></p>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
-  <% end %>
-
+  </div>
 </div>
 
