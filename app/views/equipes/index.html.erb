@@ -18,7 +18,7 @@
 <div class="row">
   <% @equipes.each do |equipe| %>
     <div class="col-lg-3">
-      <div class="thumbnail">
+      <div class="thumbnail" style="margin-top: 20px;">
         <h2 class="text-center"><%= equipe.name %></h2>
         <a href="<%= equipe_path(equipe.id) %>"><%= image_tag equipe.image.url, :class => "img_equipes" %></a>
         <br>
@@ -26,8 +26,8 @@
           <p class="text-center">
             <a href="<%= edit_equipe_path(equipe.id) %>" class="btn btn-warning">Modifier</a>
             <%= link_to 'Défier', defier_joueur_path(equipe.id), :class => 'btn btn-lg btn-success' %>
-            <!--
-            <a href="<%= equipe_path(equipe.id) %>" class="btn btn-danger" data-confirm="Es-tu sûr de vouloir annuler le contrat du club ?" data-method="DELETE">Annuler contrat</a> -->
+            
+            <!-- <a href="<%= equipe_path(equipe.id) %>" class="btn btn-danger" data-confirm="Es-tu sûr de vouloir annuler le contrat du club ?" data-method="DELETE">Annuler contrat</a>  -->
           </p>
         <% end %>
       </div>

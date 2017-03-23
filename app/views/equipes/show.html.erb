@@ -18,8 +18,8 @@
 		<div class="col-lg-3" style="margin-top: 40px;">
 			<a href="<%= joueur_path(joueur.id) %>" class="img_joueurs"><%= image_tag joueur.image.url %></a>
 				<% if user_signed_in? %>
-					<!-- <a href="<%= edit_joueur_path(joueur.id) %>" class="btn btn-warning">Editer</a>
-					<a href="<%= joueur_path(joueur.id) %>" class="btn btn-danger" data-confirm="Êtes-vous sûr de rompre le contrat de ce joueur ?" data-method="DELETE">Rompre contrat</a>-->
+					<a href="<%= edit_joueur_path(joueur.id) %>" class="btn btn-warning">Editer</a>
+					<a href="<%= joueur_path(joueur.id) %>" class="btn btn-danger" data-confirm="Êtes-vous sûr de rompre le contrat de ce joueur ?" data-method="DELETE">Rompre contrat</a>
 				<% end %>
 			</div>
 		<% end %>
