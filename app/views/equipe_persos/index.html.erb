@@ -3,7 +3,7 @@
     <% @equipe_persos.each do |equipe_perso| %>
       <h1 class="text-center"><%= equipe_perso.nameteam %></h1>
 
-      <a href='<% equipe_perso %>'><%= image_tag equipe_perso.image.url, :class => "img_equipes_show" %></a>
+      <a href='<%= equipe_perso_path(equipe_perso.id) %>'><%= image_tag equipe_perso.image.url, :class => "img_equipes_show" %></a>
       <p class="text-center" style="margin-top: 40px;">
         <%= link_to 'Voir en détails', equipe_perso, :class => "btn btn-lg btn-primary" %>
         <%= link_to 'Acheter des joueurs', joueurs_path, :class => "btn btn-lg btn-primary" %>

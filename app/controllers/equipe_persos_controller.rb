@@ -30,10 +30,58 @@ class EquipePersosController < ApplicationController
   def create
     @equipe_perso = EquipePerso.new(equipe_perso_params)
 
+    @joueur = Joueur.find(22)
+    @joueur.estAchete = true
+    @joueur.save
+
+    @joueur = Joueur.find(27)
+    @joueur.estAchete = true
+    @joueur.save
+
+    @joueur = Joueur.find(28)
+    @joueur.estAchete = true
+    @joueur.save
+
+    @joueur = Joueur.find(29)
+    @joueur.estAchete = true
+    @joueur.save
+
+    @joueur = Joueur.find(30)
+    @joueur.estAchete = true
+    @joueur.save
+
+    @joueur = Joueur.find(35)
+    @joueur.estAchete = true
+    @joueur.save
+
+    @joueur = Joueur.find(38)
+    @joueur.estAchete = true
+    @joueur.save
+
+    @joueur = Joueur.find(40)
+    @joueur.estAchete = true
+    @joueur.save
+
+    @joueur = Joueur.find(40)
+    @joueur.estAchete = true
+    @joueur.save
+
+    @joueur = Joueur.find(43)
+    @joueur.estAchete = true
+    @joueur.save
+
+    @joueur = Joueur.find(44)
+    @joueur.estAchete = true
+    @joueur.save
+
+    @joueur = Joueur.find(46)
+    @joueur.estAchete = true
+    @joueur.save
+
     respond_to do |format|
       if @equipe_perso.save
         format.html { redirect_to @equipe_perso }
-        flash[:success] = "Ton équipe a bien été crée ! Tu viens de recevoir une prime de 1200€ !"
+        flash[:success] = "Ton équipe a bien été crée ! Tu viens de recevoir une prime de 1200€ ainsi que plusieurs joueurs !"
         format.json { render :show, status: :created, location: @equipe_perso }
       else
         format.html { render :new }

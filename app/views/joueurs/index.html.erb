@@ -33,7 +33,7 @@
 				</p>
 				
 				<% if user_signed_in? && @equipe_persos.first %>
-					<% if @equipe_persos.first.argent >= joueur.prix %>
+					<% if @equipe_persos.first.argent >= joueur.prix && joueur.estAchete == false %>
 						<p class="text-center"><%= link_to 'ACHETER', acheter_joueur_path(joueur.id), :class => "btn btn-success btn-lg" %>
 						</p>
 					<% else %>

@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321180909) do
+ActiveRecord::Schema.define(version: 20170324102056) do
 
   create_table "equipe_persos", force: :cascade do |t|
     t.string   "nameteam"
     t.string   "nametrainer"
     t.integer  "effectif"
     t.string   "pays"
-    t.integer  "statsgenerale"
+    t.integer  "statsgenerale",      default: 25
     t.integer  "argent",             default: 1200
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
