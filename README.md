@@ -1,25 +1,50 @@
-# README
+# README 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Une fois le projet téléchargé et décompressé, ouvrir un terminal puis se placer sur le répertoire obtenu.
 
-Things you may want to cover:
+Lancer la commande :
+```sh
+$ bundle install
+```
+... pour installer tous les gems.
 
-* Ruby version
+Puis celle-ci :
+```sh
+$ bundle update
+```
+... pour mettre à jour tous les gems.
 
-* System dependencies
+Il faut effectuer toutes les migrations, pour cela, exécutez cette commande :
+```sh
+$ rake db:migrate
+```
+Pour récupérer la base de données de joueurs et des équipes, tapez cette commande :
+```sh
+$ rails db:seed:dump
+```
+Ensuite, lancer le serveur 
+```sh
+$ rails s
+```
 
-* Configuration
+Et enfin, ouvrir un navigateur et se rendre sur le localhost : 
+* localhost:3000
 
-* Database creation
 
-* Database initialization
+## Fonctionnalités de l'application
 
-* How to run the test suite
+* Un utilisateur lambda peut voir toutes les équipes ainsi que les joueurs. Pour pouvoir créer une équipe, il faut se logger.
 
-* Services (job queues, cache servers, search engines, etc.)
+* Une fois logger, on a accès à la création d'une équipe personnalisée en choisissant :
+  * le nom du club,
+  * le nom de l'entraîneur,
+  * le pays,
+  * Le logo.
+  
+ * 13 joueurs sont automatiquement attribués lors de la création de l'équipe ainsi que la somme de 1200€.
+ * L'argent permet d'acheter d'autres joueurs qui sont dans la rubrique "joueurs".
+ * L'équipe crée possède un faible niveau de statistiques générales. Pour les améliorer, il faut effectuer des entraînements (les joueurs appartenant à l'équipe n'ont pas d'incidence sur les statistiques générales).
+ * Ces statistiques générales sont importantes lorsque l'on défie une équipe. Si l'équipe adverse possède des statistiques générales plus élévées que l'équipe personnelle, le match sera perdu ainsi que la somme de 1000€. Dans le cas d'une victoire, une prime de 2000€ sera obtenu.
+ * Les joueurs appartenant à l'équipe perso peuvent être vendus. Dans ce cas, on obtient la moitié de sa valeur.
 
-* Deployment instructions
-
-* ...
-# FootballEvolutionTeam
+# Football Evolution Team projet Ruby on Rails
