@@ -34,7 +34,7 @@
 <p class="text-center">
 <%= link_to 'Acheter des joueurs', joueurs_path, :class => "btn btn-lg btn-primary" %>
 <% if !@equipe_perso.effectif.nil? && @equipe_perso.effectif > 0 %>
-  <%= link_to 'Entraînement', entrainer_equipe_perso_path(@equipe_perso.id), :class => "btn btn-lg btn-success" %>
+  <%= link_to 'Entraînement', entrainer_equipe_perso_path(@equipe_perso.id), :class => "btn btn-lg btn-success btn-entrainement" %>
 <% end %>
 <%= link_to 'Modifier', edit_equipe_perso_path(@equipe_perso), :class => "btn btn-lg btn-warning" %>
 <%= link_to 'Retour', equipe_persos_path, :class => "btn btn-lg btn-default" %>

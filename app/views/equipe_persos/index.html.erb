@@ -8,7 +8,7 @@
         <%= link_to 'Voir en détails', equipe_perso, :class => "btn btn-lg btn-primary" %>
         <%= link_to 'Acheter des joueurs', joueurs_path, :class => "btn btn-lg btn-primary" %>
         <% if !equipe_perso.effectif.nil? && equipe_perso.effectif > 0 %>
-          <%= link_to 'Entraînement', entrainer_equipe_perso_path(equipe_perso.id), :class => "btn btn-lg btn-success" %>
+            <%= link_to 'Entraînement', entrainer_equipe_perso_path(equipe_perso.id), :class => "btn btn-lg btn-success btn_entrainement" %>
         <% end %>
         <%= link_to 'Modifier', edit_equipe_perso_path(equipe_perso), :class => "btn btn-lg btn-warning" %>
         <%= link_to 'Annuler le contrat', equipe_perso, method: :delete, data: { confirm: 'Êtes-vous sûr d\'annuler le contrat de votre équipe ?' }, :class => "btn btn-lg btn-danger" %>
@@ -19,3 +19,19 @@
   <% else %>
     <%= link_to 'Créer ton équipe', new_equipe_perso_path, :class => "btn btn-success" %>
 <% end %>
+
+<a data-toggle="modal" href="#myModal" class="btn btn-primary">Open Modal</a>
+
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h4>Header</h4>
+            </div>
+            <div class="modal-body">
+                Modal Content
+            </div>
+        </div> 
+    </div>
+</div>
