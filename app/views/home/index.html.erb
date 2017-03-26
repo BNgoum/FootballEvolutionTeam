@@ -22,12 +22,13 @@
 	<% if user_signed_in? %>
 		<% if @equipe_persos.first %>
 			<a href="<%= joueurs_path %>" class="btn btn-lg btn-primary">Acheter des joueurs</a>
+			<a href="<%= equipe_persos_path %>" class="btn btn-lg btn-primary">Liste de mes joueurs</a>
+
+		<a href="<%=  %>" class="btn btn-lg btn-warning">Modifier mon équipe</a>
 		<% else %>
 			<a href="<%= new_equipe_perso_path %>" class="btn btn-lg btn-success">Créer ton équipe</a>
 		<% end %>
-		<a href="<%= equipe_persos_path %>" class="btn btn-lg btn-primary">Liste de mes joueurs</a>
-
-		<a href="<%=  %>" class="btn btn-lg btn-warning">Modifier mon équipe</a>
+		
 	<% else %>
 		<h3 class="text-center">Connecte-toi pour commencer à jouer !</h3>
 	<% end %>
