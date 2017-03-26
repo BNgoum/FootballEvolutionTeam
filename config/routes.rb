@@ -28,6 +28,9 @@ Rails.application.routes.draw do
     member do
       get 'defier'
     end
+    member do
+      get 'acheter'
+    end
   end
   resources :photos
 

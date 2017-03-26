@@ -35,12 +35,24 @@ class EquipesController < ApplicationController
   	redirect_to equipes_path
   end
 
-  # def defier
-  #   @equipe = Equipe.find(params[:id])
-  #   @mon_equipe = EquipePerso.first
-  #   if @mon_equipe.statsgenerale > @equipe.statsgenerale
-  #   end
-  # end
+  def acheter
+    @joueur = Joueur.find(params[:id])
+    if @joueur.present?
+      @equipe_perso = EquipePerso.first
+      if @equipe_perso.argent >= @joueur.prix
+        @equipe_perso.argent -= @joueur.prix
+        @equipe_perso.effectif += 1
+        @equipe_perso.save
+        @joueur.estAchete = true
+        @joueur.save
+        flash[:success] = "#{@joueur.name} a bien été acheté !"
+        redirect_to equipe_path(@joueur.equipe_id)
+      else
+        flash[:danger] = "Vous n'avez pas assez d'argent !"
+        redirect_to equipe_path(@joueur.equipe_id)
+      end
+    end
+  end
 
 
   private

@@ -52,7 +52,10 @@
         <div class="col-lg-3 ">
           <div class="" style="margin: 50px 0 0 0;">
             <a href="<%= joueur_path(joueur.id) %>" class="img_joueurs"><%= image_tag joueur.image.url %></a>
-            <p class="text-center"><%= link_to 'VENDRE', vendre_joueur_path(type: joueur), :class => "btn btn-danger btn-lg", data: { confirm: 'Êtes-vous sûr de vouloir vendre ce joueur ? Vous obtiendrez la moitié de sa valeur d\'achat initiale.' } %></p>
+            <% if @equipe_perso.effectif > 3 %>
+              <p class="text-center"><%= link_to 'VENDRE', vendre_joueur_path(type: joueur), :class => "btn btn-danger btn-lg", data: { confirm: 'Êtes-vous sûr de vouloir vendre ce joueur ? Vous obtiendrez la moitié de sa valeur d\'achat initiale.' } %>
+              </p>
+            <% end %>
           </div>
         </div>
       <% end %>

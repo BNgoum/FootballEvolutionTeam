@@ -5,7 +5,7 @@ class JoueursController < ApplicationController
 
   def index
     @search = Joueur.search(params[:q])
-    @joueurs = @search.result.paginate(:page => params[:page], :per_page => 8)
+    @joueurs = @search.result.paginate(:page => params[:page], :per_page => 12)
   	# @joueurs = Joueur.all.paginate(:page => params[:page], :per_page => 8)
     @equipes = Equipe.all
     @equipe_persos = EquipePerso.all
@@ -50,11 +50,11 @@ class JoueursController < ApplicationController
   def acheter
     @joueur = Joueur.find(params[:id])
     if @joueur.present?
-      @a = EquipePerso.first
-      if @a.argent >= @joueur.prix
-        @a.argent -= @joueur.prix
-        @a.effectif += 1
-        @a.save
+      @equipe_perso = EquipePerso.first
+      if @equipe_perso.argent >= @joueur.prix
+        @equipe_perso.argent -= @joueur.prix
+        @equipe_perso.effectif += 1
+        @equipe_perso.save
         @joueur.estAchete = true
         @joueur.save
         flash[:success] = "#{@joueur.name} a bien été acheté !"
@@ -69,13 +69,13 @@ class JoueursController < ApplicationController
 
   def vendre
     @joueur = Joueur.find(params[:type])
-    @a = EquipePerso.first
-    @a.argent += @joueur.prix/2
-    @a.effectif -= 1
-    @a.save
+    @equipe_perso = EquipePerso.first
+    @equipe_perso.argent += @joueur.prix/2
+    @equipe_perso.effectif -= 1
+    @equipe_perso.save
     @joueur.estAchete = false
     @joueur.save
-    flash[:success] = "#{@joueur.name} a bien été vendu !"
+    flash[:success] = "#{@joueur.name} a bien été vendu et tu obtiens la somme de #{@joueur.prix/2}€ !"
     redirect_to equipe_perso_path
   end
 

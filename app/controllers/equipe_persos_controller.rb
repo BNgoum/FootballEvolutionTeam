@@ -62,7 +62,7 @@ class EquipePersosController < ApplicationController
     @joueur.estAchete = true
     @joueur.save
 
-    @joueur = Joueur.find(40)
+    @joueur = Joueur.find(41)
     @joueur.estAchete = true
     @joueur.save
 
@@ -77,6 +77,9 @@ class EquipePersosController < ApplicationController
     @joueur = Joueur.find(46)
     @joueur.estAchete = true
     @joueur.save
+
+    @equipe_perso.effectif = 12
+    @equipe_perso.save
 
     respond_to do |format|
       if @equipe_perso.save

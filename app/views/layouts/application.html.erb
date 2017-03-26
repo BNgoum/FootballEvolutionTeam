@@ -35,7 +35,7 @@
 	        <li class="<%= 'active' if params[:controller] == 'equipe_persos' %>"><a href="<%= equipe_persos_path %>">Mon équipe</a></li>
 	        <% end %>
 	      </ul>
-	      <ul class="nav navbar-nav navbar-right">
+	      <ul class="nav navbar-nav navbar-right" data-toggle="tooltip" data-placement="bottom" title="Défie des équipes pour remporter de l'argent !">
 	      	<% if user_signed_in? && @equipe_persos.present? %>
 		        <li style="margin: 5px 40px 0 0;">
 		        	<i class="fa fa-money fa-3x" style="color: green;" aria-hidden="true"></i> <strong style="color:white; font-size: 3rem;"> : <%= @equipe_persos.first.argent %> €</strong>

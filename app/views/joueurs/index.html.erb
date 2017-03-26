@@ -1,26 +1,41 @@
 <div class="row">
 	<div class="col-lg-6">
-		<h1 style="margin-bottom: 0px; float:left;">Liste des joueurs</h1> 
-		<% if user_signed_in? %>
-			<a href="<%= new_joueur_path %>" class="btn btn-success" style="margin: 23px 0 40px 15px;">Recruter un joueur</a>
+		<h1 style="margin-bottom: 0px; float:left;">Liste des joueurs</h1>
+		<a href='#' type="button" class="btn" data-toggle="modal" data-target="#myModal" style="margin: 20px 0 40px 0px">
+		  <span class="badge">?</span>
+		</a>
+		
+		<!--<% if user_signed_in? %>
+			<a href="<%= new_joueur_path %>" class="btn btn-success" style="margin: 23px 0 40px 10px;">Recruter un joueur</a>
+		<% end %>-->
+	</div>
+
+	<div class="col-lg-offset-1 col-lg-4" style="margin-top : 20px;">
+		<%= search_form_for @search do |f| %>
+			<div style="float:right;"><%= f.submit "Rechercher", :class => 'btn btn-default' %></div>
+			<div style="float:right;">
+				<%= f.text_field :name_cont, :class => "form-control", :placeholder => "Rechercher un joueur..." %>
+			</div>
 		<% end %>
 	</div>
 
-<div class="col-lg-offset-2 col-lg-4" style="margin-top : 20px;">
-	<%= search_form_for @search do |f| %>
-		<div style="float:right;"><%= f.submit "Rechercher", :class => 'btn btn-default' %></div>
-		<div style="float:right;">
-			<%= f.text_field :name_cont, :class => "form-control", :placeholder => "Rechercher un joueur..." %>
-		</div>
-		
-	<% end %>
-	</div>
+	<div class="col-lg-1" style="margin-top : 20px;">
+		<div class="dropdown">
+	      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+	      	<i class="fa fa-filter" aria-hidden="true"></i>
+	      </button>
+	      <ul class="dropdown-menu">
+	        <li><a href="#">Croissant</a></li>
+	        <li><a href="#">Décroissant</a></li>
+	      </ul>
+	    </div>
+    </div>
 </div>
 
 <div class="row">
 	<% @joueurs.each do |joueur| %>
 		<div class="col-lg-3">
-			<div class="thumbnail" style="margin-bottom: 30px;">
+			<div class="thumbnail" style="margin-bottom: 40px;">
 				<a href="<%= joueur_path(joueur.id) %>"><%= image_tag joueur.image.url %></a>
 				<p class="text-center">
 					<span class="badge text-center">
@@ -33,7 +48,7 @@
 				</p>
 				
 				<% if user_signed_in? && @equipe_persos.first %>
-					<% if @equipe_persos.first.argent >= joueur.prix && joueur.estAchete == false %>
+					<% if @equipe_persos.first.argent >= joueur.prix && joueur.estAchete == false && @equipe_persos.first.effectif < 16%>
 						<p class="text-center"><%= link_to 'ACHETER', acheter_joueur_path(joueur.id), :class => "btn btn-success btn-lg" %>
 						</p>
 					<% else %>
@@ -51,6 +66,24 @@
 
 <%= will_paginate @joueurs, previous_label: "<", next_label: ">", renderer:BootstrapPagination::Rails %>
 
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title text-center" id="myModalLabel">Explication d'une carte joueur</h2>
+      </div>
+      <div class="modal-body">
+        <p style="text-align: center;"><%= image_tag 'carte2.png' %></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success">J'ai compris !</button>
+      </div>
+    </div>
+  </div>
+</div>
 	  
 
 
